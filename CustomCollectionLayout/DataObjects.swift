@@ -140,23 +140,3 @@ public let CELLWIDTH:CGFloat=100
 public let CELLHEIGTH:CGFloat=30
 
 
-//MARK: extension for UIImgeView for Loading from URL
-
-extension  UIImageView {
-        public func imageFromServerURL(urlString: String) {
-            
-            URLSession.shared.dataTask(with: NSURL(string: urlString)! as URL, completionHandler: { (data, response, error) -> Void in
-                
-                if error != nil {
-                    print(error ?? "error")
-                    return
-                }
-                DispatchQueue.main.async(execute: { () -> Void in
-                    let image = UIImage(data: data!)
-                    self.image = image
-                })
-                
-            }).resume()
-        }
-        
-    }
