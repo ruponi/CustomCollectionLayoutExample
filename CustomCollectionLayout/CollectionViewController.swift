@@ -11,10 +11,13 @@ import UIKit
 
 
 class CollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate,CellDelegate {
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    
     let dateCellIdentifier = "DateCellIdentifier"
     let contentCellIdentifier = "ContentCellIdentifier"
     let contentHeaderIdentifier = "HeaderCellIdentifier"
-    @IBOutlet weak var collectionView: UICollectionView!
     var numberRow=50
     var array_of_the_data:[DataObjects.ProductData]=[]
     
@@ -62,13 +65,21 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
     // MARK - UICollectionViewDataSource
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
+        if array_of_the_data.count==0 {
+            return 0
+        } else {
         return numberRow
+        }
     }
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
-       return array_of_the_data.count+1
+        if (array_of_the_data.count==0) {
+            return 0
+        }
+        else {
+            return array_of_the_data.count+1
+        }
         
     }
     
@@ -92,17 +103,8 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
         } else {
             if indexPath.row == 0 {
                 let dateCell : DateCollectionViewCell = collectionView .dequeueReusableCell(withReuseIdentifier: dateCellIdentifier, for: indexPath) as! DateCollectionViewCell
-                dateCell.dateLabel.font = UIFont.systemFont(ofSize: 13)
-                dateCell.dateLabel.textColor = UIColor.black
-                dateCell.dateLabel.text = String(indexPath.section)
-             
-                if indexPath.section % 2 != 0 {
-                    dateCell.backgroundColor = UIColor(white: 242/255.0, alpha: 1.0)
-                } else {
-                    dateCell.backgroundColor = UIColor.white
-                }
                 
-                return dateCell
+                return setDateCell(cCell: dateCell, indexPath: indexPath)
             } else {
                 let contentCell : ContentCollectionViewCell = collectionView .dequeueReusableCell(withReuseIdentifier: contentCellIdentifier, for: indexPath) as! ContentCollectionViewCell
                 
@@ -136,12 +138,54 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
     return hCell
     }
     
+   
+    private  func setDateCell(cCell:DateCollectionViewCell,indexPath:IndexPath)->DateCollectionViewCell{
+        cCell.dateLabel.font = UIFont.systemFont(ofSize: 13)
+        cCell.dateLabel.textColor = UIColor.black
+        
+        
+        if (array_of_the_data.count>indexPath.row-1  && array_of_the_data.count>0)  {
+            if (array_of_the_data[0].productParameters!.count>indexPath.section-1 && array_of_the_data[0].productParameters!.count>0) {
+                let productItem:DataObjects.CellItem =  array_of_the_data[0].productParameters![indexPath.section-1]
+                cCell.dateLabel.text = String(format: "%@:",productItem.cTitle!.0)
+            }
+            else {
+                cCell.dateLabel.text = String(indexPath.section)
+            }
+        } else {
+            cCell.dateLabel.text = String(indexPath.section)
+        }
+        
+        if indexPath.section % 2 != 0 {
+            cCell.backgroundColor = UIColor(white: 242/255.0, alpha: 1.0)
+        } else {
+            cCell.backgroundColor = UIColor.white
+        }
+        
+        
+        return cCell
+    }
+    
+    
+    
+    
     private  func setContentCell(cCell:ContentCollectionViewCell,indexPath:IndexPath)->ContentCollectionViewCell{
         cCell.contentLabel.font = UIFont.systemFont(ofSize: 13)
         cCell.contentLabel.textColor = UIColor.black
         
         
-        cCell.contentLabel.text = String(format: "C-%d,%d",indexPath.section,indexPath.row)
+        if (array_of_the_data.count>indexPath.row-1) {
+            if (array_of_the_data[indexPath.row-1].productParameters!.count>indexPath.section-1) {
+                let productItem:DataObjects.CellItem =  array_of_the_data[indexPath.row-1].productParameters![indexPath.section-1]
+                cCell.contentLabel.text = String(format: "%@",productItem.cTitle!.1)
+            }
+            else {
+                   cCell.contentLabel.text = String(format: "C-%d,%d",indexPath.section,indexPath.row)
+            }
+        } else {
+            cCell.contentLabel.text = String(format: "C-%d,%d",indexPath.section,indexPath.row)
+        }
+
         if indexPath.section % 2 != 0 {
             cCell.backgroundColor = UIColor(white: 242/255.0, alpha: 1.0)
         } else {

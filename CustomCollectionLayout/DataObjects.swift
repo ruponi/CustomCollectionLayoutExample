@@ -48,8 +48,7 @@ class DataObjects: NSObject {
         var allProductss:[ProductData]=[]
         for item in data {
             let dItem:NSDictionary=item as! NSDictionary
-
-            let  tempHeader:HeaderItem=HeaderItem.init(
+            let tempHeader:HeaderItem=HeaderItem.init(
                 hImageLink: dItem.object(forKey: FieldName.PhotoLink.rawValue) as! String?,
                 hTitle: dItem.object(forKey: FieldName.ModelName.rawValue) as! String?,
                 hIndex: NSInteger(dItem.object(forKey: FieldName.ModelNumber.rawValue) as! String)!)

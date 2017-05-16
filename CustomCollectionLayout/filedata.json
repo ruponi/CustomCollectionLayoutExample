@@ -2,26 +2,26 @@
     {  "ModelId": "123",
   "ModelName": "2017 Acura ILX",
   "PhotoLink": "https://www.cstatic-images.com/car-pictures/xl/USC70ACC141A021001.jpg",
-  "ModelPrice":"42345",
-  "ModelSize": "1240x234x600",
-  "ModelVersion":"6.1",
-  "Transmission":"6-speed automatic w/OD and auto-manual",
+  "ModelPrice":"12345",
+  "ModelSize": "2240x234x500",
+  "ModelVersion":"1.2",
+  "Transmission":"manual",
   "CruiseControl":1,
-  "Drivetrain":"RDW",
-  "Seats":5,
-  "Combined MPG":23
+  "Drivetrain":"RD4W",
+  "Seats":2,
+  "Combined MPG":123
     },
         {  "ModelId": "124",
   "ModelName": "2017 Alfa Romeo 4C",
   "PhotoLink": "https://www.cstatic-images.com/car-pictures/xl/USC50ALC051A021001.jpg",
-  "ModelPrice":"42345",
-  "ModelSize": "1240x234x600",
-  "ModelVersion":"6.1",
-  "Transmission":"6-speed automatic w/OD and auto-manual",
+  "ModelPrice":"1000",
+  "ModelSize": "140x234x600",
+  "ModelVersion":"5.0",
+  "Transmission":"6-speed automatic ",
   "CruiseControl":1,
   "Drivetrain":"RDW",
   "Seats":5,
-  "Combined MPG":23
+  "Combined MPG":223
     },
         {  "ModelId": "125",
   "ModelName": "2012 Aston Martin DBS",
@@ -50,14 +50,14 @@
         {  "ModelId": "127",
   "ModelName": "2017 Acura ILX",
   "PhotoLink": "https://www.cstatic-images.com/car-pictures/xl/USC70ACC141A021001.jpg",
-  "ModelPrice":"42345",
-  "ModelSize": "1240x234x600",
+  "ModelPrice":"142300",
+  "ModelSize": "1040x234x900",
   "ModelVersion":"6.1",
   "Transmission":"6-speed automatic w/OD and auto-manual",
   "CruiseControl":1,
-  "Drivetrain":"RDW",
-  "Seats":5,
-  "Combined MPG":23
+  "Drivetrain":"MPD",
+  "Seats":15,
+  "Combined MPG":223
     }
   ]
 

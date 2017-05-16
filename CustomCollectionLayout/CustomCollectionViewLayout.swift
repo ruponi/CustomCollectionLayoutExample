@@ -30,6 +30,7 @@ class CustomCollectionViewLayout: UICollectionViewLayout {
         
         
         if self.collectionView?.numberOfSections == 0 {
+            self.contentSize = CGSize(width: contentWidth, height: contentHeight)
             return
         }
         var numberOfItems : Int = self.collectionView!.numberOfItems(inSection: 0)
@@ -37,7 +38,7 @@ class CustomCollectionViewLayout: UICollectionViewLayout {
         if (self.itemAttributes != nil && self.itemAttributes.count > 0) {
             for section in 0..<self.collectionView!.numberOfSections {
                 
-                 numberOfItems = self.collectionView!.numberOfItems(inSection: section)
+                numberOfItems = self.collectionView!.numberOfItems(inSection: section)
                 numberOfColumns=numberOfItems
                 if   ((self.itemAttributes[section] as AnyObject).count>numberOfColumns){
                     let f:NSMutableArray=itemAttributes.object(at: section) as! NSMutableArray
@@ -45,7 +46,7 @@ class CustomCollectionViewLayout: UICollectionViewLayout {
                     self.itemAttributes.replaceObject(at: section, with:f)
                     
                     let attributes : UICollectionViewLayoutAttributes = (self.itemAttributes.lastObject as AnyObject).lastObject as! UICollectionViewLayoutAttributes
-                contentHeight = attributes.frame.origin.y + attributes.frame.size.height
+                    contentHeight = attributes.frame.origin.y + attributes.frame.size.height
                     self.contentSize = CGSize(width: getWidthContent(), height: contentHeight)
                  
                 
@@ -190,7 +191,7 @@ class CustomCollectionViewLayout: UICollectionViewLayout {
             for index in 0..<numberOfColumns {
                 var itemSize = (self.itemsSize[index] as AnyObject).cgSizeValue
                 if  section==0 {
-                    itemSize=CGSize(width: itemSize!.width, height: itemSize!.height+40.0)
+                    itemSize=CGSize(width: itemSize!.width, height: HEADERHEIGHT)
                 }
                 let indexPath = IndexPath(item: index, section: section)
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
